@@ -2,6 +2,7 @@
   "name": "portfolio-website",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://EshanDhankani.github.io/Go_Dekho_Pakistan",
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@lottiefiles/react-lottie-player": "^3.6.0",
@@ -34,7 +35,9 @@
     "eject": "react-scripts eject",
     "build:analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
     "lint": "eslint src/**/*.{js,jsx}",
-    "lint:fix": "eslint src/**/*.{js,jsx} --fix"
+    "lint:fix": "eslint src/**/*.{js,jsx} --fix",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -59,6 +62,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@types/three": "^0.177.0",
     "autoprefixer": "^10.4.21",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17"
   }

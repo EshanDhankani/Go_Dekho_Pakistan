@@ -13,10 +13,8 @@ import LottieAnimations from './components/LottieAnimations';
 import ScrollAnimations from './components/ScrollAnimations';
 import './App.css';
 
-// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-// Error Boundary Component
 class ErrorBoundary extends Component {
   state = { hasError: false };
 
@@ -40,17 +38,14 @@ function App() {
   const appRef = useRef(null);
 
   useEffect(() => {
-    // Initialize GSAP ScrollTrigger
     ScrollTrigger.refresh();
 
-    // Page load animation
     gsap.fromTo(
       appRef.current,
       { opacity: 0 },
       { opacity: 1, duration: 1, ease: 'power2.out' }
     );
 
-    // Smooth scroll behavior
     const smoothScroll = (e) => {
       if (e.target.getAttribute('href')?.startsWith('#')) {
         e.preventDefault();
@@ -67,7 +62,6 @@ function App() {
       }
     };
 
-    // Enhanced scroll event handler for performance
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
@@ -82,7 +76,6 @@ function App() {
     document.addEventListener('click', smoothScroll);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Cleanup function
     return () => {
       document.removeEventListener('click', smoothScroll);
       window.removeEventListener('scroll', handleScroll);
@@ -93,38 +86,27 @@ function App() {
   return (
     <ErrorBoundary>
       <div ref={appRef} className="App">
-        {/* Custom Cursor Component */}
         <CustomCursor />
 
-        {/* Navigation Component */}
         <Navigation />
 
-        {/* Main Content */}
-        <main id="main-content" role="main"> {/* Added id for skip link */}
-          {/* Landing Section */}
+        <main id="main-content" role="main"> 
           <Landing />
           <LottieAnimations />
 
-          {/* About Section */}
           <About />
 
-          {/* Services Section */}
           <Services />
 
-          {/* Portfolio Section */}
           <Portfolio />
 
-          {/* Performance Optimizer Section */}
-          <PerformanceOptimizer /> {/* Updated from Performance */}
+          <PerformanceOptimizer /> 
 
-          {/* Contact Section */}
           <Contact />
         </main>
 
-        {/* Scroll Animations Component */}
         <ScrollAnimations />
 
-        {/* Accessibility Skip Link */}
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

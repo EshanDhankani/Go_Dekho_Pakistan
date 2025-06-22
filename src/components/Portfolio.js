@@ -7,7 +7,6 @@ const Portfolio = () => {
   const [visibleItems, setVisibleItems] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  // Updated project data with more comprehensive information
   const projects = [
     {
       id: 1,
@@ -267,7 +266,6 @@ const Portfolio = () => {
   return (
     <section ref={sectionRef} id="portfolio" className="min-h-screen bg-black py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold text-[#FFD700] mb-6">
             Our Portfolio
@@ -278,7 +276,6 @@ const Portfolio = () => {
           </p>
         </div>
 
-        {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => (
             <button
@@ -295,7 +292,6 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* Portfolio Grid using PortfolioTile Component */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItems.map((project, index) => (
             <div
@@ -313,7 +309,6 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
         <div className="text-center mt-16">
           <div className="inline-block bg-gradient-to-r from-[#FFD700]/10 to-[#B8860B]/10 
             border border-[#FFD700]/30 rounded-2xl p-8 backdrop-blur-sm">
@@ -332,7 +327,6 @@ const Portfolio = () => {
         </div>
       </div>
 
-      {/* Project Modal */}
       <ProjectModal 
         project={selectedProject} 
         onClose={() => setSelectedProject(null)} 

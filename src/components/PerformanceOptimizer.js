@@ -5,7 +5,6 @@ const PerformanceOptimizer = () => {
   const observerRef = useRef();
 
   useEffect(() => {
-    // Intersection Observer for lazy loading
     const createIntersectionObserver = () => {
       observerRef.current = new IntersectionObserver(
         (entries) => {
@@ -47,7 +46,6 @@ const PerformanceOptimizer = () => {
       });
     };
 
-    // Debounced resize handler
     let resizeTimeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
@@ -74,7 +72,6 @@ const PerformanceOptimizer = () => {
       if (scrollTimeout) return;
       
       scrollTimeout = requestAnimationFrame(() => {
-        // Update cursor position smoothly
         const cursor = document.querySelector('.custom-cursor');
         const follower = document.querySelector('.cursor-follower');
         
@@ -99,9 +96,7 @@ const PerformanceOptimizer = () => {
       });
     };
 
-    // Memory management for Three.js
     const cleanupThreeJS = () => {
-      // Clean up Three.js resources
       const scenes = document.querySelectorAll('.three-js-scene');
       scenes.forEach(sceneElement => {
         if (sceneElement.scene) {
@@ -131,9 +126,7 @@ const PerformanceOptimizer = () => {
       });
     };
 
-    // Preload critical resources
     const preloadResources = () => {
-      // Preload fonts
       const fontPreloads = [
         'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
         'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap'
@@ -203,12 +196,10 @@ const PerformanceOptimizer = () => {
       rafRef.current = requestAnimationFrame(measureFPS);
     };
 
-    // Initialize optimizations
     createIntersectionObserver();
     preloadResources();
     monitorPerformance();
 
-    // Event listeners
     window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -264,7 +255,6 @@ const PerformanceOptimizer = () => {
           }
         });
       } else {
-        // Resume animations when tab becomes visible
         if (window.gsap) {
           window.gsap.globalTimeline.resume();
         }
@@ -288,9 +278,7 @@ const PerformanceOptimizer = () => {
   return null; // This component doesn't render anything
 };
 
-// Utility functions for performance optimization
 export const optimizationUtils = {
-  // Debounce function
   debounce: (func, wait) => {
     let timeout;
     return function executedFunction(...args) {
@@ -303,7 +291,6 @@ export const optimizationUtils = {
     };
   },
 
-  // Throttle function
   throttle: (func, limit) => {
     let inThrottle;
     return function() {
@@ -338,7 +325,6 @@ export const optimizationUtils = {
     });
   },
 
-  // Get device performance tier
   getPerformanceTier: () => {
     const memory = navigator.deviceMemory || 4;
     const cores = navigator.hardwareConcurrency || 4;

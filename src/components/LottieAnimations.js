@@ -1,4 +1,3 @@
-// LottieAnimation.js - True Lottie Integration
 import React, { useEffect, useRef } from 'react';
 
 const LottieAnimation = ({ 

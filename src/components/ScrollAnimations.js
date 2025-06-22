@@ -1,9 +1,7 @@
-// ScrollAnimations.js - GSAP ScrollTrigger Integration
 import { useEffect } from 'react';
 
 const ScrollAnimations = () => {
   useEffect(() => {
-    // Check if GSAP is loaded
     if (typeof window !== 'undefined' && window.gsap && window.ScrollTrigger) {
       const gsap = window.gsap;
       const ScrollTrigger = window.ScrollTrigger;
@@ -62,7 +60,6 @@ const ScrollAnimations = () => {
         }
       });
 
-      // About Section Timeline Animation
       gsap.fromTo('.timeline-item',
         {
           x: -100,
@@ -193,7 +190,6 @@ const ScrollAnimations = () => {
         }
       });
 
-      // Advanced Text Reveal Animation
       gsap.utils.toArray('.reveal-text').forEach(text => {
         gsap.fromTo(text,
           {
@@ -276,7 +272,6 @@ const ScrollAnimations = () => {
         });
       }
 
-      // Cleanup function
       return () => {
         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       };
@@ -285,7 +280,7 @@ const ScrollAnimations = () => {
     }
   }, []);
 
-  return null; // This component doesn't render anything
+  return null; 
 };
 
 export default ScrollAnimations;

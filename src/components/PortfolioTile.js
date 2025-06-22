@@ -1,4 +1,3 @@
-// PortfolioTile.js - Enhanced 3D Tiles with Video Preview
 import React, { useRef, useState, useEffect } from 'react';
 
 const PortfolioTile = ({ project, index }) => {
@@ -90,7 +89,6 @@ const PortfolioTile = ({ project, index }) => {
         transformStyle: 'preserve-3d'
       }}
     >
-      {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
         style={{
@@ -99,10 +97,8 @@ const PortfolioTile = ({ project, index }) => {
         }}
       />
 
-      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50" />
 
-      {/* Video Preview Overlay */}
       {project.videoUrl && (
         <div className="video-overlay absolute inset-0 flex items-center justify-center bg-black bg-opacity-80">
           <video

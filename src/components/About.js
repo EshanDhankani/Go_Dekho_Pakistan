@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lottie from 'lottie-react';
 
-// Simple Lottie-style animation data
 const timelineAnimation = {
   v: "5.7.4",
   fr: 30,
@@ -118,7 +117,6 @@ const About = () => {
       }
     });
 
-    // Timeline animation
     const timelineItems = timeline.querySelectorAll('.timeline-item');
 
     timelineItems.forEach((item, index) => {
@@ -289,7 +287,6 @@ const About = () => {
             </p>
           </div>
 
-          {/* Timeline */}
           <div
             ref={timelineRef}
             className="timeline-container"
@@ -298,7 +295,6 @@ const About = () => {
               padding: '40px 0'
             }}
           >
-            {/* Timeline Line */}
             <div
               className="timeline-line"
               style={{
@@ -313,7 +309,6 @@ const About = () => {
               }}
             />
 
-            {/* Timeline Items */}
             {timelineData.map((item, index) => (
               <div
                 key={index}
@@ -371,7 +366,6 @@ const About = () => {
                   </p>
                 </div>
 
-                {/* Icon */}
                 <div
                   className="timeline-icon"
                   style={{
@@ -393,7 +387,6 @@ const About = () => {
                   {item.icon}
                 </div>
 
-                {/* Arrow Pointer */}
                 <div
                   style={{
                     position: 'absolute',
