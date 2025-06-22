@@ -1,10 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
 const Services = () => {
-  const sectionRef = useRef(null);
-  const [visibleCards, setVisibleCards] = useState([]);
-
-  // Lottie Animation Component (Custom implementation since we can't import actual Lottie)
   const LottieIcon = ({ type, isHovered }) => {
     const getIconAnimation = () => {
       switch (type) {
@@ -298,7 +294,7 @@ const Services = () => {
     {
       id: 5,
       title: "Brand Identity",
-      description: "Comprehensivebranding solutions that establish your unique identity and market presence.",
+      description: "Comprehensive branding solutions that establish your unique identity and market presence.",
       icon: "branding",
       features: ["Logo Design", "Brand Guidelines", "Marketing Materials", "Brand Strategy"]
     },
@@ -311,26 +307,7 @@ const Services = () => {
     }
   ];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const cardId = parseInt(entry.target.dataset.cardId);
-            setVisibleCards(prev => [...new Set([...prev, cardId])]);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const cards = sectionRef.current?.querySelectorAll('.service-card');
-    cards?.forEach(card => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
-
-  const ServiceCard = ({ service, index, isVisible }) => {
+  const ServiceCard = ({ service, index }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -339,20 +316,18 @@ const Services = () => {
         className={`service-card group relative bg-gradient-to-br from-[#121212] to-[#1C1C1C] 
           border border-[#FFD700]/20 rounded-2xl p-8 cursor-pointer overflow-hidden
           transform transition-all duration-700 hover:scale-105 hover:border-[#FFD700]/60
-          ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}
+          translate-y-0 opacity-100
           hover:shadow-2xl hover:shadow-[#FFD700]/20`}
         style={{ 
-          transitionDelay: isVisible ? `${index * 150}ms` : '0ms',
+          transitionDelay: `${index * 150}ms`,
           background: isHovered ? 'linear-gradient(135deg, #1C1C1C 0%, #121212 100%)' : undefined
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Animated Background Gradient */}
         <div className={`absolute inset-0 bg-gradient-to-r from-[#FFD700]/5 via-transparent to-[#B8860B]/5 
           opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
         
-        {/* Floating Particles Effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(6)].map((_, i) => (
             <div
@@ -369,24 +344,16 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Content */}
         <div className="relative z-10">
-          {/* Lottie Icon */}
           <LottieIcon type={service.icon} isHovered={isHovered} />
-
-          {/* Title */}
           <h3 className={`text-2xl font-bold mb-4 transition-all duration-300
             ${isHovered ? 'text-[#F5DEB3] scale-105' : 'text-[#FFD700]'}`}>
             {service.title}
           </h3>
-
-          {/* Description */}
           <p className={`text-gray-300 mb-6 leading-relaxed transition-all duration-300
             ${isHovered ? 'text-white' : ''}`}>
             {service.description}
           </p>
-
-          {/* Features */}
           <div className="space-y-2">
             {service.features.map((feature, featureIndex) => (
               <div
@@ -406,8 +373,6 @@ const Services = () => {
               </div>
             ))}
           </div>
-
-          {/* Hover Action Button */}
           <div className={`mt-6 transform transition-all duration-500 overflow-hidden
             ${isHovered ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'}`}>
             <button className="w-full bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black 
@@ -417,8 +382,6 @@ const Services = () => {
             </button>
           </div>
         </div>
-
-        {/* Corner Accent */}
         <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#FFD700]/20 to-transparent 
           rounded-bl-full transform transition-all duration-500 
           ${isHovered ? 'scale-150 from-[#FFD700]/40' : 'scale-100'}`} />
@@ -428,12 +391,10 @@ const Services = () => {
 
   return (
     <section 
-      ref={sectionRef}
       id="services" 
       className="min-h-screen bg-black py-20 px-4 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold text-[#FFD700] mb-6 
             transform transition-all duration-1000 hover:scale-105">
@@ -446,20 +407,15 @@ const Services = () => {
             combining cutting-edge technology with exceptional design.
           </p>
         </div>
-
-        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <ServiceCard
               key={service.id}
               service={service}
               index={index}
-              isVisible={visibleCards.includes(service.id)}
             />
           ))}
         </div>
-
-        {/* Animated Digital Wave Section */}
         <div className="mt-16 relative w-full h-48 overflow-hidden bg-gradient-to-b from-black to-[#1C1C1C]">
           <svg className="absolute bottom-0 w-full" viewBox="0 0 1440 100" preserveAspectRatio="xMidYMax slice">
             <path 
@@ -473,7 +429,6 @@ const Services = () => {
               className="wave2"
             />
           </svg>
-          {/* Floating Particles */}
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
@@ -487,8 +442,6 @@ const Services = () => {
             />
           ))}
         </div>
-
-        {/* Bottom CTA */}
         <div className="text-center mt-16">
           <div className="inline-block bg-gradient-to-r from-[#FFD700]/10 to-[#B8860B]/10 
             border border-[#FFD700]/30 rounded-2xl p-8 backdrop-blur-sm">
@@ -506,7 +459,6 @@ const Services = () => {
           </div>
         </div>
       </div>
-
       <style>
         {`
           @keyframes float {
@@ -531,7 +483,7 @@ const Services = () => {
 
           .wave2 {
             animation: wave 5s ease-in-out infinite;
-            animation-delay: 0.5s;
+            animationDelay: 0.5s;
           }
         `}
       </style>

@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
-// Memoized AnimatedInput Component to prevent unnecessary re-renders
 const AnimatedInput = React.memo(({
   type = 'text',
   name,
@@ -14,7 +13,6 @@ const AnimatedInput = React.memo(({
   const [hasValue, setHasValue] = useState(value.length > 0);
   const inputRef = useRef(null); // Reference to the input/textarea element
 
-  // Update hasValue only when value changes significantly
   useEffect(() => {
     setHasValue(value.length > 0);
   }, [value]);
@@ -39,7 +37,6 @@ const AnimatedInput = React.memo(({
         rounded-lg transition-all duration-500 transform
         ${isFocused ? 'scale-105 from-[#FFD700]/10 to-[#B8860B]/10' : 'scale-100'}`} />
 
-      {/* Input Field */}
       <div className="relative">
         <InputComponent
           ref={inputRef}

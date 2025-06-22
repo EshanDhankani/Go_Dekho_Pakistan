@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import PortfolioTile from './PortfolioTile';
+import React, { useState, useEffect, useRef } from "react";
+import PortfolioTile from "./PortfolioTile";
 
 const Portfolio = () => {
   const sectionRef = useRef(null);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [visibleItems, setVisibleItems] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -12,8 +12,8 @@ const Portfolio = () => {
       id: 1,
       title: "E-Commerce Platform",
       description: "Modern e-commerce solution with React and Node.js",
-      image: "/assets/images/portfolio/project1.jpg",
-      videoUrl: "/videos/project1-demo.mp4",
+      image: `${process.env.PUBLIC_URL}/assets/images/portfolio/project1.jpg`,
+      videoUrl: `${process.env.PUBLIC_URL}/videos/project1-demo.mp4`,
       category: "web",
       technologies: ["React", "Node.js", "MongoDB", "Stripe"],
       liveUrl: "https://example.com",
@@ -26,15 +26,16 @@ const Portfolio = () => {
         "Modern user interface with smooth animations",
         "Optimized performance and SEO",
         "Cross-browser compatibility",
-        "Scalable architecture"
-      ]
+        "Scalable architecture",
+      ],
     },
     {
       id: 2,
       title: "Mobile Banking App",
       description: "Secure mobile banking application with advanced features",
-      image: "/assets/images/portfolio/project2.jpg",
-      videoUrl: "/videos/project2-demo.mp4",
+      image: `${process.env.PUBLIC_URL}/assets/images/portfolio/project2.jpg`,
+      videoUrl: `${process.env.PUBLIC_URL}/videos/project2-demo.mp4`,
+
       category: "mobile",
       technologies: ["React Native", "Firebase", "Biometric Auth"],
       liveUrl: "https://example.com/banking",
@@ -47,15 +48,17 @@ const Portfolio = () => {
         "Real-time transaction monitoring",
         "Secure payment processing",
         "Multi-language support",
-        "Offline capability"
-      ]
+        "Offline capability",
+      ],
     },
     {
       id: 3,
       title: "Brand Identity Design",
-      description: "Complete brand identity and visual system for modern businesses",
-      image: "/assets/images/portfolio/project3.jpg",
-      videoUrl: "/videos/project1-demo.mp4",
+      description:
+        "Complete brand identity and visual system for modern businesses",
+      image: `${process.env.PUBLIC_URL}/assets/images/portfolio/project3.jpg`,
+      videoUrl: `${process.env.PUBLIC_URL}/videos/project1-demo.mp4`,
+
       category: "design",
       technologies: ["Figma", "Illustrator", "Photoshop", "After Effects"],
       liveUrl: "https://example.com/brand",
@@ -68,15 +71,16 @@ const Portfolio = () => {
         "Color palette and typography",
         "Marketing material design",
         "Digital asset creation",
-        "Brand strategy consultation"
-      ]
+        "Brand strategy consultation",
+      ],
     },
     {
       id: 4,
       title: "SaaS Dashboard",
       description: "Analytics dashboard for SaaS platform with real-time data",
-      image: "/assets/images/portfolio/project4.jpg",
-      videoUrl: "/videos/project2-demo.mp4",
+      image: `${process.env.PUBLIC_URL}/assets/images/portfolio/project4.jpg`,
+      videoUrl: `${process.env.PUBLIC_URL}/videos/project2-demo.mp4`,
+
       category: "web",
       technologies: ["Vue.js", "D3.js", "Python", "PostgreSQL"],
       liveUrl: "https://example.com/dashboard",
@@ -89,15 +93,16 @@ const Portfolio = () => {
         "Custom reporting tools",
         "User role management",
         "API integration",
-        "Export functionality"
-      ]
+        "Export functionality",
+      ],
     },
     {
       id: 5,
       title: "Food Delivery App",
       description: "On-demand food delivery mobile app with GPS tracking",
-      image: "/videos/project1-demo.mp4",
-      videoUrl: "/videos/project1-demo.mp4",
+      image: `${process.env.PUBLIC_URL}/assets/images/portfolio/project5.jpg`,
+      videoUrl: `${process.env.PUBLIC_URL}/videos/project1-demo.mp4`,
+
       category: "mobile",
       technologies: ["Flutter", "Firebase", "Maps API", "Payment Gateway"],
       liveUrl: "https://example.com/food-delivery",
@@ -110,15 +115,16 @@ const Portfolio = () => {
         "Multiple payment options",
         "Restaurant management",
         "Push notifications",
-        "Rating and review system"
-      ]
+        "Rating and review system",
+      ],
     },
     {
       id: 6,
       title: "Corporate Website",
       description: "Professional corporate website with CMS integration",
-      image: "/assets/images/portfolio/project6.jpg",
-      videoUrl: "/videos/project2-demo.mp4",
+      image: `${process.env.PUBLIC_URL}/assets/images/portfolio/project6.jpg`,
+      videoUrl: `${process.env.PUBLIC_URL}/videos/project2-demo.mp4`,
+
       category: "web",
       technologies: ["Next.js", "Strapi", "PostgreSQL", "AWS"],
       liveUrl: "https://example.com/corporate",
@@ -131,21 +137,22 @@ const Portfolio = () => {
         "SEO optimization",
         "Multi-language support",
         "Contact form integration",
-        "Analytics dashboard"
-      ]
-    }
+        "Analytics dashboard",
+      ],
+    },
   ];
 
   const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'web', label: 'Web Development' },
-    { id: 'mobile', label: 'Mobile Apps' },
-    { id: 'design', label: 'UI/UX Design' }
+    { id: "all", label: "All Projects" },
+    { id: "web", label: "Web Development" },
+    { id: "mobile", label: "Mobile Apps" },
+    { id: "design", label: "UI/UX Design" },
   ];
 
-  const filteredItems = selectedCategory === 'all' 
-    ? projects 
-    : projects.filter(item => item.category === selectedCategory);
+  const filteredItems =
+    selectedCategory === "all"
+      ? projects
+      : projects.filter((item) => item.category === selectedCategory);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -153,15 +160,15 @@ const Portfolio = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const itemId = parseInt(entry.target.dataset.itemId);
-            setVisibleItems(prev => [...new Set([...prev, itemId])]);
+            setVisibleItems((prev) => [...new Set([...prev, itemId])]);
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    const items = sectionRef.current?.querySelectorAll('.portfolio-item');
-    items?.forEach(item => observer.observe(item));
+    const items = sectionRef.current?.querySelectorAll(".portfolio-item");
+    items?.forEach((item) => observer.observe(item));
 
     return () => observer.disconnect();
   }, [filteredItems]);
@@ -171,17 +178,20 @@ const Portfolio = () => {
 
     return (
       <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
-        <div className="bg-gradient-to-br from-[#1C1C1C] to-[#121212] border border-[#FFD700]/30 
-          rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-          
+        <div
+          className="bg-gradient-to-br from-[#1C1C1C] to-[#121212] border border-[#FFD700]/30 
+          rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+        >
           {/* Header */}
           <div className="p-6 border-b border-[#FFD700]/20">
             <div className="flex justify-between items-start">
               <div>
-                <h3 className="text-3xl font-bold text-[#FFD700] mb-2">{project.title}</h3>
+                <h3 className="text-3xl font-bold text-[#FFD700] mb-2">
+                  {project.title}
+                </h3>
                 <p className="text-gray-300">{project.description}</p>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="text-[#FFD700] hover:text-[#F5DEB3] text-2xl font-bold
                   w-10 h-10 flex items-center justify-center rounded-full
@@ -197,14 +207,19 @@ const Portfolio = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Preview */}
               <div className="space-y-4">
-                <div className="aspect-video bg-[#1C1C1C] rounded-lg border border-[#FFD700]/20 
-                  flex items-center justify-center">
+                <div
+                  className="aspect-video bg-[#1C1C1C] rounded-lg border border-[#FFD700]/20 
+                  flex items-center justify-center"
+                >
                   <span className="text-[#FFD700]">Project Preview</span>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-2">
                   {[...Array(4)].map((_, i) => (
-                    <div key={i} className="aspect-video bg-[#1C1C1C] rounded border border-[#FFD700]/20" />
+                    <div
+                      key={i}
+                      className="aspect-video bg-[#1C1C1C] rounded border border-[#FFD700]/20"
+                    />
                   ))}
                 </div>
               </div>
@@ -212,11 +227,16 @@ const Portfolio = () => {
               {/* Details */}
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-xl font-semibold text-[#FFD700] mb-3">Technologies Used</h4>
+                  <h4 className="text-xl font-semibold text-[#FFD700] mb-3">
+                    Technologies Used
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, index) => (
-                      <span key={index} className="bg-[#FFD700]/20 text-[#FFD700] px-3 py-1 
-                        rounded-full text-sm border border-[#FFD700]/30">
+                      <span
+                        key={index}
+                        className="bg-[#FFD700]/20 text-[#FFD700] px-3 py-1 
+                        rounded-full text-sm border border-[#FFD700]/30"
+                      >
                         {tech}
                       </span>
                     ))}
@@ -224,7 +244,9 @@ const Portfolio = () => {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-semibold text-[#FFD700] mb-3">Project Features</h4>
+                  <h4 className="text-xl font-semibold text-[#FFD700] mb-3">
+                    Project Features
+                  </h4>
                   <ul className="space-y-2 text-gray-300">
                     {project.features.map((feature, index) => (
                       <li key={index}>• {feature}</li>
@@ -233,7 +255,7 @@ const Portfolio = () => {
                 </div>
 
                 <div className="flex space-x-4">
-                  <a 
+                  <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -244,7 +266,7 @@ const Portfolio = () => {
                   >
                     View Live Demo
                   </a>
-                  <a 
+                  <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -264,7 +286,11 @@ const Portfolio = () => {
   };
 
   return (
-    <section ref={sectionRef} id="portfolio" className="min-h-screen bg-black py-20 px-4">
+    <section
+      ref={sectionRef}
+      id="portfolio"
+      className="min-h-screen bg-black py-20 px-4"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold text-[#FFD700] mb-6">
@@ -272,7 +298,8 @@ const Portfolio = () => {
           </h2>
           <div className="w-32 h-1 bg-gradient-to-r from-[#FFD700] to-[#B8860B] mx-auto mb-8" />
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Discover our latest projects showcasing innovative solutions and cutting-edge design
+            Discover our latest projects showcasing innovative solutions and
+            cutting-edge design
           </p>
         </div>
 
@@ -282,9 +309,10 @@ const Portfolio = () => {
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105
-                ${selectedCategory === category.id
-                  ? 'bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black'
-                  : 'border border-[#FFD700]/30 text-[#FFD700] hover:bg-[#FFD700]/10'
+                ${
+                  selectedCategory === category.id
+                    ? "bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black"
+                    : "border border-[#FFD700]/30 text-[#FFD700] hover:bg-[#FFD700]/10"
                 }`}
             >
               {category.label}
@@ -300,8 +328,8 @@ const Portfolio = () => {
               className="portfolio-item"
               onClick={() => setSelectedProject(project)}
             >
-              <PortfolioTile 
-                project={project} 
+              <PortfolioTile
+                project={project}
                 index={index}
                 isVisible={visibleItems.includes(project.id)}
               />
@@ -310,31 +338,33 @@ const Portfolio = () => {
         </div>
 
         <div className="text-center mt-16">
-          <div className="inline-block bg-gradient-to-r from-[#FFD700]/10 to-[#B8860B]/10 
-            border border-[#FFD700]/30 rounded-2xl p-8 backdrop-blur-sm">
+          <div
+            className="inline-block bg-gradient-to-r from-[#FFD700]/10 to-[#B8860B]/10 
+            border border-[#FFD700]/30 rounded-2xl p-8 backdrop-blur-sm"
+          >
             <h3 className="text-2xl font-bold text-[#FFD700] mb-4">
               Like What You See?
             </h3>
             <p className="text-gray-300 mb-6">
               Let's create something amazing together
             </p>
-            <button className="bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black 
+            <button
+              className="bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black 
               font-bold py-4 px-8 rounded-lg hover:from-[#F5DEB3] hover:to-[#FFD700] 
-              transition-all duration-300 transform hover:scale-105">
+              transition-all duration-300 transform hover:scale-105"
+            >
               Start Your Project
             </button>
           </div>
         </div>
       </div>
 
-      <ProjectModal 
-        project={selectedProject} 
-        onClose={() => setSelectedProject(null)} 
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
       />
     </section>
   );
 };
 
 export default Portfolio;
-
-
