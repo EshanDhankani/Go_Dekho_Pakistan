@@ -4,6 +4,7 @@ const Services = () => {
   const sectionRef = useRef(null);
   const [visibleCards, setVisibleCards] = useState([]);
 
+  // Lottie Animation Component (Custom implementation since we can't import actual Lottie)
   const LottieIcon = ({ type, isHovered }) => {
     const getIconAnimation = () => {
       switch (type) {
