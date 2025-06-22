@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.css": "/Go_Dekho_Pakistan/static/css/main.eafb34ac.css",
+    "main.js": "/Go_Dekho_Pakistan/static/js/main.665928ed.js",
+    "index.html": "/Go_Dekho_Pakistan/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.eafb34ac.css",
+    "static/js/main.665928ed.js"
+  ]
+}
