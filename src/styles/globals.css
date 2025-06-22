@@ -1,0 +1,23 @@
+:root {
+  --primary-black: #000000;
+  --rich-gold: #FFD700;
+  --deep-gold: #B8860B;
+  --soft-gold-hover: #F5DEB3;
+  --background-dark: #121212;
+  --text-gold: #FFD700;
+  --shadow: #1C1C1C;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-dark);
+  color: var(--text-gold);
+  font-family: 'Segoe UI', sans-serif;
+  scroll-behavior: smooth;
+}
+
+section {
+  padding: 80px 20px;
+  min-height: 100vh;
+}
